@@ -3,7 +3,7 @@ import DefaultText from '@/components/ui/DefaultText';
 import LoadingOverlay from '@/components/ui/LoadingOverlay';
 import { getTasks } from '@/services/task';
 import { useTaskStore } from '@/store/TaskState';
-import { appFonts } from '@/utils/fonts';
+import { GlobalColors } from '@/utils/colors';
 import { useEffect, useState } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 
@@ -48,17 +48,8 @@ export default HomeScreen;
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: GlobalColors?.darkBackground,
       justifyContent: 'center',
       alignItems: 'center',
     },
-    title: {
-      fontFamily: appFonts?.title,
-    },
-    subtitle: {
-      fontFamily: appFonts?.subtitle,
-    },
-    text: {
-      fontFamily: appFonts?.text,
-    }
   });

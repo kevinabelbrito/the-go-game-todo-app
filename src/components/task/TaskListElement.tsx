@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NavigationProp } from '@/types/navigation';
 import { changeStatus, deleteTask } from '@/services/task';
 import { useTaskStore } from '@/store/TaskState';
+import { GlobalColors } from '@/utils/colors';
 
 function TaskListElement({
     id,
@@ -65,6 +66,10 @@ function TaskListElement({
         }
     }
 
+    const aditionalStatusContainerStyles = {
+        backgroundColor: status == 'pending' ? GlobalColors?.warning : GlobalColors?.success,
+    }
+
     return (
         <View style={styles.rootContainer}>
             <View style={styles.titleContainer}>
@@ -78,8 +83,8 @@ function TaskListElement({
                     <FlatButton 
                         onPress={toggleStatus}
                         style={{
-                            pressableContainer: styles.buttonStatusContainer,
-                            text: styles.buttonStatusText,
+                            pressableContainer: {...styles.buttonStatusContainer, ...aditionalStatusContainerStyles},
+                            text: { color: status == 'pending' ? GlobalColors?.darkText : GlobalColors?.lightText },
                         }}
                     >
                         {status}
@@ -87,10 +92,10 @@ function TaskListElement({
                 </View>
                 <View style={styles.buttonsContainer}>
                     <FlatButton onPress={editHandler}>
-                        <Ionicons name="pencil" size={24} color="blue" />
+                        <Ionicons name="pencil" size={24} color={GlobalColors?.darkBackground} />
                     </FlatButton>
                     <FlatButton onPress={deleteHandler}>
-                        <Ionicons name="trash" size={24} color="red" />
+                        <Ionicons name="trash" size={24} color={GlobalColors?.error}/>
                     </FlatButton>
                 </View>
             </View>
@@ -103,11 +108,11 @@ export default TaskListElement;
 const styles = StyleSheet.create({
     rootContainer: {
         padding: 10,
+        backgroundColor: GlobalColors?.lightBackground,
         borderRadius: 8,
-        borderWidth: 2,
-        borderColor: 'blue',
         marginVertical: 10,
         marginHorizontal: 30,
+        elevation: 4,
     },
     titleContainer: {
         // paddingVertical: 10,
@@ -128,11 +133,7 @@ const styles = StyleSheet.create({
         gap: 5,
     },
     buttonStatusContainer: {
-        backgroundColor: 'blue',
         paddingHorizontal: 20,
         paddingVertical: 10,
     },
-    buttonStatusText: {
-        color: 'white',
-    }
 });
