@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NavigationProp } from "@/types/navigation";
 import { useTaskStore } from "@/store/TaskState";
 import { useLayoutEffect } from "react";
+import { GlobalColors } from "@/utils/colors";
 
 
 function TaskScreen({ route }: any) {
@@ -70,6 +71,6 @@ export default TaskScreen;
 const styles = StyleSheet.create({
     rootContainer: {
         flex: 1,
-        // justifyContent: 'center',
+        backgroundColor: GlobalColors?.darkBackground,
     }
 });

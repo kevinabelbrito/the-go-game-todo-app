@@ -60,7 +60,7 @@ export default TaskForm;
 const styles = StyleSheet.create({
     rootContainer: {
         marginHorizontal: 20,
-        marginTop: 10,
+        marginTop: 30,
         paddingHorizontal: 50,
         paddingVertical: 20,
         backgroundColor: 'white',

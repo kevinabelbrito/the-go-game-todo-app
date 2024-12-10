@@ -1,26 +1,27 @@
+import { HttpRequest } from "@/client/Http";
 import { Task } from "@/interfaces/task";
-import axios from "axios";
-import { API_URL } from '@env';
+
+const http = new HttpRequest();
 
 export async function getTasks() {
-    const response = await axios.get(`${API_URL}/tasks`);
+    const response = await http.get(`/tasks`);
     return response?.data;
 }
 
 export async function addTask(body: Partial<Task>) {
-    const response = await axios.post(`${API_URL}/tasks`, {...body});
+    const response = await http.post(`/tasks`, {...body});
     return response?.data;
 }
 export async function updateTask(id: string, body: Partial<Task>) {
-    const response = await axios.put(`${API_URL}/tasks/${id}`, {...body});
+    const response = await http.put(`/tasks/${id}`, {...body});
     return response?.data;
 }
 
 export async function changeStatus(id: string) {
-    const response = await axios.patch(`${API_URL}/tasks/${id}/status`);
+    const response = await http.patch(`/tasks/${id}/status`);
     return response?.data;
 }
 
 export async function deleteTask(id: string) {
-    await axios.delete(`${API_URL}/tasks/${id}`);
+    await http.delete(`/tasks/${id}`);
 }
