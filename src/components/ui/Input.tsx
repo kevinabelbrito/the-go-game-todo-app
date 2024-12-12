@@ -1,4 +1,5 @@
 import { InputProps } from "@/interfaces/input";
+import { GlobalColors } from "@/utils/colors";
 import { appFonts } from "@/utils/fonts";
 import { StyleSheet, Text, TextInput, View } from "react-native"
 
@@ -34,8 +35,8 @@ const styles = StyleSheet?.create({
         fontFamily: appFonts.text,
         padding: 6,
         borderRadius: 6,
-        borderWidth: 2,
-        borderColor: 'blue',
+        borderBottomWidth: 2,
+        borderColor: GlobalColors?.darkBackground,
         fontSize: 14,
     },
     inputMultiline: {

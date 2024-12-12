@@ -1,12 +1,14 @@
 import TaskForm from "@/components/task/TaskForm"
 import { Task } from "@/interfaces/task";
 import { addTask, updateTask } from "@/services/task";
-import { Alert, StyleSheet, Text, View } from "react-native"
+import { Alert, Platform, StyleSheet, Text, View } from "react-native"
 import { useNavigation } from '@react-navigation/native';
 import { NavigationProp } from "@/types/navigation";
 import { useTaskStore } from "@/store/TaskState";
 import { useLayoutEffect } from "react";
 import { GlobalColors } from "@/utils/colors";
+import TaskImage from "@/components/ui/TaskImage";
+import alert from "@/utils/alert";
 
 
 function TaskScreen({ route }: any) {
@@ -43,7 +45,7 @@ function TaskScreen({ route }: any) {
             addNewTask(newTask);
             navigation.goBack();   
         } catch (error) {
-            Alert.alert("Ups!", "Error adding task, please check the data and try again.");
+            alert("Ups!", "Error adding task, please check the data and try again.");
             console.log("Error adding tasks: ", error);
         }
     }
@@ -54,13 +56,14 @@ function TaskScreen({ route }: any) {
             updateCurrentTask({...updatedTask, status: selectedTask?.status, createdAt: selectedTask?.createdAt}, taskId);
             navigation.goBack();  
         } catch (error) {
-            Alert.alert("Ups!", "Error editing task, please check the data and try again.");
+            alert("Ups!", "Error editing task, please check the data and try again.");
             console.log("Error editing tasks: ", error);
         }
     }
 
     return (
         <View style={styles.rootContainer}>
+            <TaskImage />
             <TaskForm onSubmit={submitHandler} isEdit={isEdit} selectedTask={selectedTask} />
         </View>
     )
@@ -72,5 +75,7 @@ const styles = StyleSheet.create({
     rootContainer: {
         flex: 1,
         backgroundColor: GlobalColors?.darkBackground,
+        justifyContent: 'center',
+        alignItems: Platform?.OS === 'web' ? 'center' : 'stretch',
     }
 });

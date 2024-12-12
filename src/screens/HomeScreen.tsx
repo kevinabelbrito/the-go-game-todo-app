@@ -3,6 +3,7 @@ import DefaultText from '@/components/ui/DefaultText';
 import LoadingOverlay from '@/components/ui/LoadingOverlay';
 import { getTasks } from '@/services/task';
 import { useTaskStore } from '@/store/TaskState';
+import alert from '@/utils/alert';
 import { GlobalColors } from '@/utils/colors';
 import { useEffect, useState } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
@@ -18,7 +19,7 @@ function HomeScreen() {
           const data = await getTasks();
           setTasks(data);
         } catch (error) {
-          Alert.alert("Attention please!", "The tasks could not be loaded");
+          alert("Attention please!", "The tasks could not be loaded");
           console.log("Error fetching tasks: ", error);
         }
         setIsLoading(false);

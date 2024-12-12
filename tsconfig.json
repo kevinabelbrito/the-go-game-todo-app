@@ -4,7 +4,8 @@
     "strict": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@fonts/*": ["./assets/fonts/*"]
+      "@fonts/*": ["./assets/fonts/*"],
+      "@images/*": ["./assets/images/*"]
     }
   },
   "typeRoots": ["./src/types/env.d.ts"]

@@ -9,6 +9,8 @@ import { NavigationProp } from '@/types/navigation';
 import { changeStatus, deleteTask } from '@/services/task';
 import { useTaskStore } from '@/store/TaskState';
 import { GlobalColors } from '@/utils/colors';
+import { GlobalStyles } from '@/utils/styles';
+import alert from '@/utils/alert';
 
 function TaskListElement({
     id,
@@ -28,13 +30,14 @@ function TaskListElement({
     }
 
     function deleteHandler() {
-        Alert.alert(
+        alert(
             "Warning!", 
             "Would you like to delete this task?",
             [
               {
                 text: 'Cancel',
                 style: 'cancel',
+                onPress: () => {},
               },
               {
                 text: 'Yes, Do it!',
@@ -49,9 +52,9 @@ function TaskListElement({
         try {
             await deleteTask(id!);
             deleteCurrentTask(id!);
-            Alert.alert("Well done", `The task ${title} has been deleted successfully!`);   
+            alert("Well done", `The task ${title} has been deleted successfully!`);   
         } catch (error) {
-            Alert.alert("Attention please!", `The task ${title} could not be deleted, please try again later`);
+            alert("Attention please!", `The task ${title} could not be deleted, please try again later`);
             console.log("Error deleting task: ", error);
         }
     }
@@ -61,7 +64,7 @@ function TaskListElement({
             const { status } = await changeStatus(id!);
             toggleTaskStatus(id!, status);
         } catch (error) {
-            Alert.alert("Attention please!", `The task ${title} status could not changed, plase try again later`);
+            alert("Attention please!", `The task ${title} status could not changed, plase try again later`);
             console.log("Error to toggle task status: ", error);
         }
     }
@@ -107,12 +110,10 @@ export default TaskListElement;
 
 const styles = StyleSheet.create({
     rootContainer: {
-        padding: 10,
-        backgroundColor: GlobalColors?.lightBackground,
-        borderRadius: 8,
+        ...GlobalStyles?.card,
+        paddingHorizontal: 20,
+        paddingVertical: 15,
         marginVertical: 10,
-        marginHorizontal: 30,
-        elevation: 4,
     },
     titleContainer: {
         // paddingVertical: 10,

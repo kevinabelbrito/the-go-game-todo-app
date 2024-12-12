@@ -3,6 +3,7 @@ import Input from "../ui/Input";
 import FlatButton from "../ui/FlatButton";
 import { useState } from "react";
 import { Task } from "@/interfaces/task";
+import { GlobalStyles } from "@/utils/styles";
 
 interface TaskFormProps {
     onSubmit: (data: Partial<Task>) => void;
@@ -59,11 +60,7 @@ export default TaskForm;
 
 const styles = StyleSheet.create({
     rootContainer: {
-        marginHorizontal: 20,
-        marginTop: 30,
-        paddingHorizontal: 50,
-        paddingVertical: 20,
-        backgroundColor: 'white',
+        ...GlobalStyles?.card,
     },
     buttonContainer: {
         justifyContent: 'center',
