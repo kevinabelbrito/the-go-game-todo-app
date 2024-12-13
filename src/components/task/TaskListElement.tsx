@@ -11,11 +11,14 @@ import { useTaskStore } from '@/store/TaskState';
 import { GlobalColors } from '@/utils/colors';
 import { GlobalStyles } from '@/utils/styles';
 import alert from '@/utils/alert';
+import Subtitle from '../ui/Subtitle';
+import { getFormattedDate } from '@/utils/date';
 
 function TaskListElement({
     id,
     title,
     description,
+    createdAt,
     status,
 }: Partial<Task>) {
     const navigation = useNavigation<NavigationProp>();
@@ -23,7 +26,6 @@ function TaskListElement({
     const { deleteTask: deleteCurrentTask, toggleTaskStatus } = useTaskStore();
 
     function editHandler() {
-        console.log("Edit task: ", id);
         navigation.navigate('Task', {
             taskId: id!,
         });
@@ -81,6 +83,11 @@ function TaskListElement({
             <View style={styles.descriptionContainer}>
                 <DefaultText>{description}</DefaultText>
             </View>
+            <View>
+                <Subtitle style={styles.date}>
+                    <Ionicons name='calendar-outline' size={12} /> {getFormattedDate(createdAt!)}
+                </Subtitle>
+            </View>
             <View style={styles.FooterContainer}>
                 <View>
                     <FlatButton 
@@ -137,4 +144,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 10,
     },
+    date: {
+        fontSize: 12,
+        textAlign: 'right',
+        color: GlobalColors?.darkText,
+    }
 });

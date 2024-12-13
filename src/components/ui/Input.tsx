@@ -34,7 +34,6 @@ const styles = StyleSheet?.create({
     input: {
         fontFamily: appFonts.text,
         padding: 6,
-        borderRadius: 6,
         borderBottomWidth: 2,
         borderColor: GlobalColors?.darkBackground,
         fontSize: 14,
